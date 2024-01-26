@@ -137,7 +137,7 @@ In Cucumber files, the configuration item type is always `Test Case`.
 
 Traceability to other configuration items is used to define the relationship between configuration items. Depending on the configuration item type, different fields are used for this purpose. 
 
-Here is the list of all possible fields that can be used in Markdown files:
+Here is the list of all possible fields that can be used in **Markdown** files:
 
 ```
 itemAffects
@@ -160,6 +160,38 @@ itemTriggers
 itemIsTriggeredBy
 ```
 
-In Cucumber files, every tag that starts with `@tests:` is considered to be a traceability field and its always `itemTests`.
+In **Cucumber** files, every tag that starts with `@tests:` is considered to be a traceability field and its always `itemTests`.
 
-TBD: Add more information about traceability fields.
+### Git-based configuration items traceability to Jira-based configuration items
+
+In a **Markdown** file, it is possible to define traceability between Git-based and Jira-based configuration items. For example, it is possible to define that a Software Item Spec, whose content is managed in a Git repository, fulfills a Requirement that is managed in Jira. In order to do this, define the `itemFulfills` field in the metadata of the Software Item Spec. The value of the `itemFulfills` field must be the Jira issue key.
+
+```
+---
+itemFulfills: KP-42
+itemHasParent: KP-40
+---
+```
+
+For **Cucumber** files, its enough to use the Jira issue key as a tag, e.g. `@tests:KP-42`.
+
+### Git-based configuration items traceability to other Git-based configuration items
+
+In a **Markdown** file, it is possible to define traceability between Git-based configuration items. For example, it is possible to define that a Software Item Spec, whose content is managed in a Git repository, fulfills a Requirement that is also managed in the same Git repository. In order to do this, define the `itemFulfills` field in the metadata of the Software Item Spec. The value of the `itemFulfills` field must be the `itemId` of the Requirement.
+
+```
+---
+itemFulfills: some-unique-string-1234
+itemHasParent: some-unique-string-1235
+---
+```
+
+For **Cucumber** files, its enough to use the `@tests:` tag with the `itemId` of the Requirement, e.g. `@tests:some-unique-string-1234`.
+
+### Jira-based configuration items traceability to Git-based configuration items
+
+All configuration items that are managed in a Git repository and synced with Ketryx are automatically exposed in Jira select fields for item relations. Thus, if a configuration item is defined in a Git repository and synced with Ketryx, it will be available in the select field of the Jira issue. For example, if a Task, whose content is managed in Jira, implements a Software Item Spec that is managed in a Git repository, you can select the Software Item Spec from the Git repository in the select field of the Task issue.
+
+## Versioning
+
+Every Git-based configuration item is associated with a version of the Git repository. The version is determined by the release ref pattern or a branch that is defined during the project creation or editing process. For example, if the release ref pattern is set to `refs/tags/v#`, the version of the Git-based configuration item will be determined by the tag name. If the tag name is `v1.0.0`, the version of the Git-based configuration item will be `1.0.0`.
