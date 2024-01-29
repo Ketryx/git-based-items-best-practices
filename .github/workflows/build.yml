@@ -1,0 +1,144 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version-file: 'package.json'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version-file: 'package.json'
+      - name: Install JS dependencies
+        run: npm ci
+      - name: Create e2e logs directory
+        run: mkdir logs
+      - name: Start web application in background for e2e tests
+        run: npm start >logs/output.txt 2>logs/error.txt &
+        env:
+          PORT: 3000
+      - name: Run unit tests
+        run: npm run test:unit
+      - name: Determine Playwright version
+        run: |
+          PLAYWRIGHT_VERSION=$(npm ls --json @playwright/test | jq --raw-output '.dependencies["@playwright/test"].version')
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+      - name: Cache Playwright browser binaries
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+      - name: Install Playwright
+        run: npx playwright install
+      - name: Run e2e tests
+        run: npm run test:e2e
+        env:
+          PORT: 3000
+
+      - name: Upload test output
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: output-js
+          path: |
+            logs
+            test-results
+          retention-days: 3
+          if-no-files-found: error
+      - name: Report JS build to Ketryx
+        uses: Ketryx/ketryx-github-action@v1
+        with:
+          ketryx-url: https://demo.ketryx.com/
+          project: ${{ secrets.KETRYX_PROJECT }}
+          api-key: ${{ secrets.KETRYX_API_KEY }}
+
+          build-name: client-js
+
+          artifact-path: |
+            build/**/*.css
+            build/**/*.js
+            build/**/*.json
+          test-cucumber-path: test-results/report.json
+          test-junit-path: test-results/*.xml
+
+          # Check whether all dependencies are accepted and controlled in Ketryx.
+          check-dependencies-status: true
+
+  test-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pytest
+      - name: Run Python tests
+        run: cd python && pytest -o junit_family=xunit1 --junitxml=../test-results/python-results.xml
+
+      - name: Upload test output
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: output-python
+          path: |
+            logs
+            test-results
+          retention-days: 3
+          if-no-files-found: error
+      - name: Report Python build to Ketryx
+        uses: Ketryx/ketryx-github-action@v1
+        with:
+          ketryx-url: ${{ secrets.KETRYX_URL }}
+          project: ${{ secrets.KETRYX_PROJECT }}
+          api-key: ${{ secrets.KETRYX_API_KEY }}
+
+          build-name: server-python
+
+          test-junit-path: test-results/*.xml
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Ketryx release
+        uses: Ketryx/ketryx-github-action@v1
+        with:
+          ketryx-url: ${{ secrets.KETRYX_URL }}
+          project: ${{ secrets.KETRYX_PROJECT }}
+          api-key: ${{ secrets.KETRYX_API_KEY }}
+
+          # It's important to assign a separate name to this build, so that it does not supersede
+          # the other build that reports test results.
+          build-name: deploy
+
+          # Check whether the version associated with this commit is fully approved and released.
+          # This can be used as a check before pushing a release to production.
+          check-release-status: true
+      - name: Run deployment
+        run: echo "Deploying (if the version was released in Ketryx)"
