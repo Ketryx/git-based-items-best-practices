@@ -1,5 +1,5 @@
 const {Given, Then, After, AfterAll, BeforeAll} = require('@cucumber/cucumber');
-const {chromium} = require('@playwright/test');
+const {chromium, expect} = require('@playwright/test');
 const assert = require('node:assert');
 
 let browser;
@@ -45,10 +45,28 @@ AfterAll(async () => {
 });
 
 Given('User is on landing page', async () => {
-    await page.goto('http://localhost:' + (process.env.PORT || '3001'));
+    await page.goto('http://localhost:' + (process.env.PORT || '3000'));
 });
 
 Then('Page has title {string}', async (expectedTitle) => {
     const actualTitle = await page.title();
-    assert.equal(actualTitle, expectedTitle);
+    expect(actualTitle, expectedTitle);
+});
+
+Given('User is on the ALM page', async () => {
+    await page.getByText('ALM').click();
+})
+
+Then('User should see the ALM page', async () => {
+    const title = await page.getByText('Alm').innerText();
+    expect(title).toEqual('Alm');
+});
+
+Given('User is on the Git-based Items page', async () => {
+    await page.getByText('Git-based Items').click();
+})
+
+Then('User should see the Git-based Items page', async () => {
+    const title = await page.getByText('Git Based Items').innerText();
+    expect(title).toEqual('Git Based Items');
 });
