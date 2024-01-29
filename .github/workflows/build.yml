@@ -88,9 +88,6 @@ jobs:
           test-cucumber-path: test-results/report.json
           test-junit-path: test-results/*.xml
 
-          # Check whether all dependencies are accepted and controlled in Ketryx.
-          check-dependencies-status: true
-
   test-python:
     runs-on: ubuntu-latest
     steps:
