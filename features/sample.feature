@@ -1,16 +1,16 @@
 Feature: Sample app
 
-  @tests:MD-3
-  Scenario: View landing page - existing TC in jira
+  @tests:GBI-2
+  Scenario: View landing page - existing TC1 in jira
     Given User is on landing page
     Then Page has title "React App"
 
-  @tests:MD-5
-  Scenario: Testing SW2
+  @tests:GBI-1
+  Scenario: Incorporate Git-based items
     Given User is on landing page
     Then Page has title "React App"
 
-  @implements:MD-6
-  Scenario: Implementing existing TC from Jira
+  @implements:GBI-3
+  Scenario: Implementing existing TC2 from Jira
     Given User is on landing page
     Then Page has title "React App"
