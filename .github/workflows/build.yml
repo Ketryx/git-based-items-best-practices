@@ -112,7 +112,7 @@ jobs:
       - name: Report Python build to Ketryx
         uses: Ketryx/ketryx-github-action@v1
         with:
-  ketryx-url: "https://staging.ketryx.com"
+          ketryx-url: "https://staging.ketryx.com"
           project: "KXPRJ585286MAZJ8V6AG82AR79KE9J4"
           api-key: "KXTK_9DKMG1MJ1YGRGJ9QHWWX0D4F5GPRTZ9SK0VE43PQF4NBM1GY8QCQQQX2CFDD7B5G904T2EMXMA35H"
 
@@ -126,7 +126,7 @@ jobs:
       - name: Check Ketryx release
         uses: Ketryx/ketryx-github-action@v1
         with:
-       ketryx-url: "https://staging.ketryx.com"
+          ketryx-url: "https://staging.ketryx.com"
           project: "KXPRJ585286MAZJ8V6AG82AR79KE9J4"
           api-key: "KXTK_9DKMG1MJ1YGRGJ9QHWWX0D4F5GPRTZ9SK0VE43PQF4NBM1GY8QCQQQX2CFDD7B5G904T2EMXMA35H"
 
