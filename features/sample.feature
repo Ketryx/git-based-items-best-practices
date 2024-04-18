@@ -1,11 +1,11 @@
 Feature: Sample app
 
-  @tests:GBI-2
+  @tests:WGT-1
   Scenario: View landing page - existing TC1 in jira
     Given User is on landing page
     Then Page has title "React App"
 
-  @tests:GBI-1
+  @tests:WGT-2
   Scenario: Incorporate Git-based items
     Given User is on landing page
     Then Page has title "React App"
