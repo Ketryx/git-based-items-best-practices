@@ -72,7 +72,7 @@ jobs:
         with:
           ketryx-url: https://ketryx-miland.eu.ngrok.io
           project: KXPRJ5C8K9DRZ0W99E930P7CAFP60MY
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          api-key: ${{ secrets.KT_API_KEY_1 }}
 
           build-name: client-js
 
