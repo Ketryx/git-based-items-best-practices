@@ -1,6 +1,6 @@
 Feature: Sample app
 
-  @tests:WGT-1 @tests:WGT-3
+  @tests:WGT-1 @tests:WGT-3 @tests:WGT-5
   Scenario: View landing page - existing TC1 in jira
     Given User is on landing page
     Then Page has title "React App"
