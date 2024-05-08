@@ -1,4 +1,4 @@
-# Ketryx - Git-based Configuration Items - How to Use Them
+# Ketryx - Git-based Configuration Items - How to Use Them?
 
 This repository serves as an example of **best practices** on how to maintain configuration items in a Git repository and incorporate them into Ketryx's Application Lifecycle Management.
 
