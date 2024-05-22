@@ -66,6 +66,10 @@ Given('User is on the Git-based Items page', async () => {
     await page.getByText('Git-based Items').click();
 })
 
+Given('User is on the Jira-based Items page', async () => {
+    await page.getByText('Jira-based Items').click();
+})
+
 Then('User should see the Git-based Items page', async () => {
     const title = await page.getByText('Git Based Items').innerText();
     expect(title).toEqual('Git Based Items');
