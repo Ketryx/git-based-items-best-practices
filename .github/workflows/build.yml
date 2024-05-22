@@ -75,9 +75,9 @@ jobs:
       - name: Report JS build to Ketryx
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: https://demo.ketryx.com
-          project: KXPRJ4NRJJ0HAP29QJADYG6X96R15V3
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: "https://staging.ketryx.xyz/"
+          project: "KXPRJ1T1FTP07PY9A8V46M55PAPJCXY"
+          api-key: "KXTK_91WNB0KNZEK4HJVHG0WPZD683EV9MDFW9EHA5M2C6APJ7YNN1PF74N0FX98HGPMS8VAK149ZXZ9C8"
 
           build-name: client-js
 
