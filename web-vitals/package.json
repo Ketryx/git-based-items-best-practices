@@ -1,0 +1,42 @@
+{
+    "name": "test-github-action",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+      "node": "~16.19.0",
+      "npm": "~8.19.3"
+    },
+    "dependencies": {
+      "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "test:unit": "JEST_JUNIT_OUTPUT_DIR=test-results JEST_JUNIT_OUTPUT_NAME=junit.xml npm run test -- --watchAll=false --testResultsProcessor=\"jest-junit\"",
+      "test:e2e": "cucumber-js",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "@cucumber/cucumber": "^8.10.0",
+      "jest-junit": "^15.0.0"
+    }
+  }
