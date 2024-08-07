@@ -6,7 +6,7 @@ Feature: Git-based and Jira-based Items
     And User is on the Git-based Items page
     Then User should see the Git-based Items page
     
-  @tests:YOUR-EXISTING-JIRA-ISSUE-KEY-FROM-THE-TC-CREATED-ON-STEP-7
+  @tests:KP8246-2
   Scenario: View Jira-based Items page
     Given User is on landing page
     And User is on the Jira-based Items page
