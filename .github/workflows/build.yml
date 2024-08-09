@@ -75,9 +75,9 @@ jobs:
       - name: Report JS build to Ketryx
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: https://demo.ketryx.com
-          project: KXPRJ4NRJJ0HAP29QJADYG6X96R15V3
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: https://staging.ketryx.xyz
+          project: KXPRJ60EA685X22884BZ89BX2FHCKTP
+          api-key: KXTK_0D1FSZNADTKK1GC37PHM6VZ9FM2M36DBJQSXRK4XWY9AF8MHB7457DC1KDA20TC95H2YQKEHB8YWJ
 
           build-name: client-js
 
@@ -112,9 +112,9 @@ jobs:
       - name: Report Python build to Ketryx
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: ${{ secrets.KETRYX_URL }}
-          project: ${{ secrets.KETRYX_PROJECT }}
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: https://staging.ketryx.xyz
+          project: KXPRJ60EA685X22884BZ89BX2FHCKTP
+          api-key: KXTK_0D1FSZNADTKK1GC37PHM6VZ9FM2M36DBJQSXRK4XWY9AF8MHB7457DC1KDA20TC95H2YQKEHB8YWJ
 
           build-name: server-python
 
@@ -126,9 +126,9 @@ jobs:
       - name: Check Ketryx release
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: ${{ secrets.KETRYX_URL }}
-          project: ${{ secrets.KETRYX_PROJECT }}
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: https://staging.ketryx.xyz
+          project: KXPRJ60EA685X22884BZ89BX2FHCKTP
+          api-key: KXTK_0D1FSZNADTKK1GC37PHM6VZ9FM2M36DBJQSXRK4XWY9AF8MHB7457DC1KDA20TC95H2YQKEHB8YWJ
 
           # It's important to assign a separate name to this build, so that it does not supersede
           # the other build that reports test results.
