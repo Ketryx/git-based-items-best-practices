@@ -112,9 +112,9 @@ jobs:
       - name: Report Python build to Ketryx
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: ${{ secrets.KETRYX_URL }}
-          project: ${{ secrets.KETRYX_PROJECT }}
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: "https://staging.ketryx.xyz"
+          project: "KXPRJ6SCVP7VNFJ8J7BPM9EMHKA3FX3"
+          api-key: "KXTK_9VVZVSZHMYJ5VP9V3H68JNRBQ545WHHE7PTFNSD15JR0X2PDZDDJV116DZV3MC002GV8QTGFV07D9"
 
           build-name: server-python
 
@@ -126,9 +126,9 @@ jobs:
       - name: Check Ketryx release
         uses: Ketryx/ketryx-github-action@v1
         with:
-          ketryx-url: ${{ secrets.KETRYX_URL }}
-          project: ${{ secrets.KETRYX_PROJECT }}
-          api-key: ${{ secrets.KETRYX_API_KEY }}
+          ketryx-url: "https://staging.ketryx.xyz"
+          project: "KXPRJ6SCVP7VNFJ8J7BPM9EMHKA3FX3"
+          api-key: "KXTK_9VVZVSZHMYJ5VP9V3H68JNRBQ545WHHE7PTFNSD15JR0X2PDZDDJV116DZV3MC002GV8QTGFV07D9"
 
           # It's important to assign a separate name to this build, so that it does not supersede
           # the other build that reports test results.
