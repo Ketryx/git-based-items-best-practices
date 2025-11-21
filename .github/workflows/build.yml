@@ -77,6 +77,7 @@ jobs:
         with:
           ketryx-url: https://staging.ketryx.xyz/
           project: KXPRJ79Z9TJTQMV9TT9PR5N6WR5XMPY
+          version: KXVSN4Q4752VVX18HFTPFGGCKQ0VM0R
           api-key: KXTK_DCZD7KGWWJHSEJ2XHGX5CT0ZJ4PRNNXSB8NV4W81YPMC2T6CKH3NJ3VBP3Y4MNNAF2X14P36Q8P3P
 
           build-name: client-js
@@ -114,6 +115,7 @@ jobs:
         with:
           ketryx-url: https://staging.ketryx.xyz/
           project: KXPRJ79Z9TJTQMV9TT9PR5N6WR5XMPY
+          version: KXVSN4Q4752VVX18HFTPFGGCKQ0VM0R
           api-key: KXTK_DCZD7KGWWJHSEJ2XHGX5CT0ZJ4PRNNXSB8NV4W81YPMC2T6CKH3NJ3VBP3Y4MNNAF2X14P36Q8P3P
 
           build-name: server-python
@@ -128,6 +130,7 @@ jobs:
         with:
           ketryx-url: https://staging.ketryx.xyz/
           project: KXPRJ79Z9TJTQMV9TT9PR5N6WR5XMPY
+          version: KXVSN4Q4752VVX18HFTPFGGCKQ0VM0R
           api-key: KXTK_DCZD7KGWWJHSEJ2XHGX5CT0ZJ4PRNNXSB8NV4W81YPMC2T6CKH3NJ3VBP3Y4MNNAF2X14P36Q8P3P
 
           # It's important to assign a separate name to this build, so that it does not supersede
