@@ -20,7 +20,7 @@ These glob patterns define the locations of configuration items within a Git rep
 In the following example:
 
 ```
-src/requrements/**/*.md
+src/requirements/**/*.md
 features/**/*.feature
 !src/**/README.md
 ```
@@ -49,7 +49,7 @@ Each markdown file is considered to be a single configuration item.
 
 **Metadata** is defined in the front matter of a Markdown file:
 
-```
+```yaml
 ---
 itemId: some-unique-string-1234
 itemType: Software Item Spec
@@ -67,7 +67,7 @@ itemImplements: KP-43, KP-44
 
 Every Scenario in a Cucumber file is considered to be a configuration item.
 
-```
+```gherkin
 Feature: Git-based Items
 
   Background:
@@ -135,7 +135,7 @@ In Cucumber files, the configuration item type is always `Test Case`.
 
 ## Traceability to other configuration items
 
-Traceability to other configuration items is used to define the relationship between configuration items. Depending on the configuration item type, different fields are used for this purpose. 
+Traceability to other configuration items is used to define the relationship between configuration items. Depending on the configuration item type, different fields are used for this purpose.
 
 Here is the list of all possible fields that can be used in **Markdown** files:
 
@@ -166,7 +166,7 @@ In **Cucumber** files, every tag that starts with `@tests:` is considered to be 
 
 In a **Markdown** file, it is possible to define traceability between Git-based and Jira-based configuration items. For example, it is possible to define that a Software Item Spec, whose content is managed in a Git repository, fulfills a Requirement that is managed in Jira. In order to do this, define the `itemFulfills` field in the metadata of the Software Item Spec. The value of the `itemFulfills` field must be the Jira issue key.
 
-```
+```yaml
 ---
 itemFulfills: KP-42
 itemHasParent: KP-40
@@ -179,7 +179,7 @@ For **Cucumber** files, its enough to use the Jira issue key as a tag, e.g. `@te
 
 In a **Markdown** file, it is possible to define traceability between Git-based configuration items. For example, it is possible to define that a Software Item Spec, whose content is managed in a Git repository, fulfills a Requirement that is also managed in the same Git repository. In order to do this, define the `itemFulfills` field in the metadata of the Software Item Spec. The value of the `itemFulfills` field must be the `itemId` of the Requirement.
 
-```
+```yaml
 ---
 itemFulfills: some-unique-string-1234
 itemHasParent: some-unique-string-1235
