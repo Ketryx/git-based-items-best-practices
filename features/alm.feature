@@ -1,7 +1,5 @@
 Feature: Application Lifecycle Management
 
-  Rule: ALM Page
-
     @tests:req-managing-items @tests:sw-sync-with-jira
     Scenario: View ALM page
       Given User is on landing page
